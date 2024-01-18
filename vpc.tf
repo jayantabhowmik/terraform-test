@@ -1,7 +1,6 @@
 # Create VPC
-
 resource "aws_vpc" "my_vpc" {
-  cidr_block = "10.0.0.0/16" 
+  cidr_block = "10.0.0.0/16" # Change this to your desired CIDR block
 
   tags = {
     Name = "Terraform-VPC"
@@ -11,24 +10,24 @@ resource "aws_vpc" "my_vpc" {
 # Create public subnet
 resource "aws_subnet" "public_subnet" {
   vpc_id                  = aws_vpc.my_vpc.id
-  cidr_block              = "10.0.1.0/24" 
-  availability_zone       = "ap-south-1a"   
+  cidr_block              = "10.0.1.0/24" # Change this to your desired CIDR block for public subnet
+  availability_zone       = "ap-south-1a"   # Change this to your desired availability zone
 
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "PublicSubnet"
+    Name = "terraform-PublicSubnet"
   }
 }
 
 # Create private subnet
 resource "aws_subnet" "private_subnet" {
   vpc_id                  = aws_vpc.my_vpc.id
-  cidr_block              = "10.0.2.0/24" 
-  availability_zone       = "ap-south-1b"   
+  cidr_block              = "10.0.2.0/24" # Change this to your desired CIDR block for private subnet
+  availability_zone       = "ap-south-1b"   # Change this to your desired availability zone
 
   tags = {
-    Name = "PrivateSubnet"
+    Name = "terraform-PrivateSubnet"
   }
 }
 
@@ -52,7 +51,7 @@ resource "aws_route_table" "public_route_table" {
   }
 
   tags = {
-   Name = "PublicRouteTable"
+   Name = "terraformPublicRouteTable"
   }
 }
 
@@ -90,7 +89,7 @@ resource "aws_route_table" "private_route_table" {
    }  
   
    tags = {
-    Name = "PrivateRouteTable"
+    Name = "terraformPrivateRouteTable"
   }
 }
 
